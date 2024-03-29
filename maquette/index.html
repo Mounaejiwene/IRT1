@@ -1,0 +1,113 @@
+
+{% extends 'Base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un livre</title>
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #9a9595;
+        }
+
+        form {
+            width: 90%; /* Réduire la largeur */
+            min-width: 280px;
+            max-width: 500px; /* Définir une largeur maximale */
+            background-color: #F4F8F8;
+            padding: 20px; /* Réduire le padding */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.8rem; /* Réduire la taille de la police */
+            text-align: center;
+            margin-bottom: 20px; /* Réduire la marge */
+        }
+
+        label {
+            display: block;
+            font-size: 1.1rem; /* Réduire la taille de la police */
+            margin-bottom: 8px; /* Réduire la marge */
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px; /* Réduire le padding */
+            font-size: 1rem; /* Réduire la taille de la police */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px; /* Réduire la marge */
+        }
+
+        .input-file {
+            display: block;
+            margin: 10px 0;
+            padding: 8px; /* Réduire le padding */
+            font-size: 1rem; /* Réduire la taille de la police */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #7AA2C2;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem; /* Réduire la taille de la police */
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5E81AC;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Ajouter un livre</h2>
+        <label for="title">Titre du Livre:</label>
+        <input id="title" type="text" name="title" required />
+
+        <label for="author">Auteur:</label>
+        <input id="author" type="text" name="author" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+
+        <label for="price">Prix:</label>
+        <input id="price" type="number" name="price" step="0.01" required />
+
+        <label class="input-file">
+            <input type="file" name="cover" accept="image/*" required />
+            Choisissez l'image de la couverture
+        </label>
+
+        <button type="submit">Ajouter le livre</button>
+    </form>
+</body>
+</html>
+
+
+
+
+{% endblock content %}
