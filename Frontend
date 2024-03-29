@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.container {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.btn {
+background-color: #008cba;
+color: white;
+padding: 10px 20px;
+margin: 10px 0;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 100px;
+
+}
+.btn:hover {
+background-color: #005f73;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Bienvenue sur notre application</h1>
+<p>login in as :</p>
+<a href="pei2.html" class="btn">Library</a>
+<a class="btn">Client</a>
+
+<a class="btn">sign in</a>
+</div>
+</body>
+</html>
