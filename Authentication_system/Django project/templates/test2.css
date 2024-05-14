@@ -1,0 +1,152 @@
+/* Typography */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto');
+
+html {
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
+  color: #f3f3f3;
+  font-weight: 400;
+  text-align: left;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: 'Josefin Sans', serif;
+  font-size: 2rem;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 2rem;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+}
+
+/* The main container */
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: #c0b6b6;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: url('https://picsum.photos/960/?blur') 0 0 no-repeat;
+  background-size: cover;
+  position: absolute;
+  opacity: 0.3;
+}
+
+/* The cards */
+.card {
+  width: 360px;
+  box-shadow: 0 0 16px 0 rgba(0,0,0,0.32);
+  cursor: pointer;
+  position: relative;
+  transform-origin: center;
+  transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  margin: 0 16px 0 0;
+}
+
+.card:last-child {
+  margin: 0;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .content {
+  padding: 40px 24px 48px 24px;
+  position: relative;
+}
+
+.card .content h1,
+.card .content p {
+  transition: all 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.card .content p.copy {
+  margin: 16px 0 0 0;
+}
+
+/* Split card styling */
+.card.split {
+  height: 480px;
+  background: rgba(22, 22, 22, 0.8);
+}
+
+.card.split:before {
+  content: '';
+  width: 100%;
+  height: 0;
+  background: #f3f3f3;
+  position: absolute;
+  bottom: 0;
+  transform-origin: bottom;
+  transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card.split:hover:before {
+  height: 277px;
+}
+
+.card.split .image {
+  display: block;
+  position: relative;
+}
+
+.card.split .image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Full card styling */
+.card.full {
+  height: 480px;
+  background: #161616;
+  overflow: hidden;
+}
+
+.card.full .content {
+  position: absolute;
+  z-index: 1;
+  bottom: 40px;
+  padding: 0 24px;
+  transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card.full:hover .content {
+  bottom: 56px;
+}
+
+.card.full .image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card.full .image img {
+  height: 480px;
+  width: auto;
+}
+
+.card.full .image:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  position: absolute;
+}

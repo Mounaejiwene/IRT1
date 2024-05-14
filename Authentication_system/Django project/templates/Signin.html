@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+</head>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        
+        <strong>Erreur :</strong> <h4 style="color: red;">{{ message }}</h4>
+    </div>
+{% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Username or Email</label>
+        <input type="text" name="credential" placeholder="Entrez votre nom d'utilisateur ou votre email">
+        <br><br>
+        <label>Mot de passe</label>
+        <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+        <br>
+        <a href="forgot_password/">Mot de passe oublié?</a>
+        <br>
+        
+        <button type="submit">Se connecter</button>
+        <a href="/Signup">Vous n'avez pas de compte? Inscrivez vous</a>
+    </form>
+
+</body>
+</html>
