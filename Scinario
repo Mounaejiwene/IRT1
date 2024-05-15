@@ -7,19 +7,13 @@ des informations sur les livres et leurs auteurs. Chaque livre est associé à u
 auteur via une clé étrangère. La fonctionnalité doit être facile à utiliser pour les 
 bibliothécaires, afin de faciliter la gestion des collections de livres. 
 Acteurs -Bibliothécaire : Utilisateur principal de l'application, responsable de la gestion des 
-collections de livres. -Système : L'application de gestion des bibliothèques. -Entités 
-Auteur : 
-id (clé primaire) 
-nom 
-prénom 
-nationalité 
+collections de livres. -Système : L'application de gestion des bibliothèques. -Entités  
 Livre : 
 id (clé primaire) 
-t
- itre 
+titre 
 genre 
 date_publication 
-id_auteur (clé étrangère référenciant l'entité Auteur) 
+auteur 
 Scénario 
 Importation de Données à partir d'un Fichier CSV 
 1.1. Le bibliothécaire sélectionne l'option "Importer" dans l'interface de 
@@ -51,10 +45,8 @@ des livres, incluant les relations de clé étrangère entre les deux entités.
 travail. 
 Spécification Technique 
 Format CSV pour l'importation : 
-Le fichier doit contenir deux sections : une pour les auteurs et une pour les livres. 
-Les colonnes pour les auteurs : id, nom, prénom, nationalité. 
-Les colonnes pour les livres : id, titre, genre, date_publication, id_auteur. 
+Le fichier doit contenir une sections :pour les livres. 
+Les colonnes pour les livres : id, titre, genre, date_publication, auteur. 
 Format CSV pour l'exportation : 
-Le fichier doit contenir toutes les données des auteurs et des livres. 
-Les relations de clé étrangère doivent être respectées (chaque livre doit 
-référencer un auteur via id_auteur). 
+Le fichier doit contenir toutes les données  des livres. 
+
