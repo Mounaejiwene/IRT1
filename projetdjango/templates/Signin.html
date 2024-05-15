@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: #001350;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #000522;
+        }
+
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div class="container">
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Erreur :</strong> <h4 style="color: red;">{{ message }}</h4>
+    </div>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Username or Email</label>
+        <input type="text" name="credential" placeholder="Entrez votre nom d'utilisateur ou votre email">
+        <br><br>
+        <label>Mot de passe</label>
+        <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+        <br>
+        <a href="forgot_password/">Mot de passe oublié?</a>
+        <br>
+        
+        <button type="submit">Se connecter</button>
+        <a href="/Signup">Vous n'avez pas de compte? Inscrivez vous</a>
+    </form>
+</div>
+
+</body>
+</html>
