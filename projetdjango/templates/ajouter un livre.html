@@ -1,0 +1,21 @@
+
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/ajouter un livre.css' %}"> <!-- Assurez-vous de remplacer "styles.css" par le nom de votre fichier CSS -->
+
+<form method="post" enctype="multipart/form-data" class="custom-form">
+    {% csrf_token %}
+    <h2>Ajouter un livre</h2>
+    {% for field in form %}
+    <div class="row">
+        <div class="col">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+    </div>
+    {% endfor %}
+    <button type="submit">Ajouter le livre</button>
+</form>
+{% endblock %}
