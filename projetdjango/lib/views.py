@@ -20,3 +20,14 @@ def recherche(request):
 def liste_livres(request):
     livres = Livre.objects.all().select_related('Id_lib')
     return render(request, 'liste_livres.html', {'livres': livres})
+    def ajouter_livre(request):
+    if request.method == 'POST':
+        form = LivreForm(request.POST, request.FILES)
+        if form.is_valid():
+            livre = form.save(commit=False)
+            livre.Id_lib = request.user.library  
+            livre.save()
+            return redirect('page_accueil') 
+    else:
+        form = LivreForm()
+    return render(request, 'ajouter un livre.html', {'form': form})
