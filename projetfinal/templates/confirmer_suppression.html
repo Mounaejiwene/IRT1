@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de suppression</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            width: 100%;
+            background-color: #dc3545;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s;
+            font-family: 'Josefin Sans', sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        button:hover {
+            transform: scale(1.02);
+        }
+        
+        button:active {
+            background-color: #c82333;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background-color: #6c757d;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+            transition: transform 0.3s;
+            font-family: 'Josefin Sans', sans-serif;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn-secondary:active {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Êtes-vous sûr de vouloir supprimer le livre "{{ livre.Name_book }}" ?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</body>
+
+</html>

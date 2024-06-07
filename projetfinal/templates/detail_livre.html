@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Livre</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 50px;
+        }
+        
+        .book-info {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 18px;
+            box-shadow: 5px 6px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        p {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 20px;
+        }
+        
+        .book-image {
+            flex: 0.75;
+            text-align: center;
+        }
+        
+        .book-image img {
+            max-width: 100%;
+            height: 520px;
+            border-radius: 18px;
+            box-shadow: 5px 6px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #008498;
+            font-size: 18px;
+            margin-bottom: 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .back-button:hover {
+            color: #005f73;
+            transform: scale(1.05);
+        }
+        
+        .back-button svg {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="javascript:history.back()" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg> Retour
+        </a>
+        <div class="book-info">
+            <h1>{{ book.Name_book }}</h1>
+            <p>Auteur: {{ book.Authour_name }}</p>
+            <p>Genre: {{ book.Genre }}</p>
+            <p>Prix: {{ book.Prix }} €</p>
+            <p>Stock: {{ book.Stock }}</p>
+            <p>Description: {{ book.Description }}</p>
+            <p>Bibliothèque: {{ book.Id_lib.name_lib }}</p>
+            <p>Téléphone de la Bibliothèque: {{ book.Id_lib.phone_number }}</p>
+        </div>
+        <div class="book-image">
+            <img src="{{ book.Image.url }}" alt="{{ book.Name_book }}">
+        </div>
+    </div>
+</body>
+
+</html>

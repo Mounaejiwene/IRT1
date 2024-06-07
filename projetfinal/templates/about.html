@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto');
+        body {
+            font-family: 'Josefin sans', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-family: 'Josefin sans', sans-serif;
+            font-size: 36px;
+            color: #000000;
+        }
+        
+        p {
+            font-size: 18px;
+            font-family: 'Josefin sans', sans-serif;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: #000000;
+        }
+        
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-info a {
+            text-decoration: none;
+            color: #000000;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .contact-info img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        .contact-info .social-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .book-image {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>À Propos</h1>
+        <br>
+        <br>
+        <img src="{% static 'book_image.png' %}" alt="Livre" class="book-image">
+        <p>Bienvenue sur notre plateforme! Nous sommes un espace dédié où les bibliothèques peuvent publier leurs livres et où les lecteurs peuvent les découvrir et les contacter.</p>
+        <p>Notre objectif est de faciliter la mise en relation entre les bibliothèques et les lecteurs, offrant ainsi un accès facile à une vaste sélection de livres et favorisant la découverte de nouveaux auteurs et œuvres littéraires.</p>
+        <br>
+        <br>
+        <div class="contact-info">
+
+
+            <p><a href="https://www.facebook.com/votrepage"><i class="fab fa-facebook-square social-icon"></i> Nom de la page Facebook</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

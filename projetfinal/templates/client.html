@@ -1,0 +1,140 @@
+{% extends 'BaseClient.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Livres</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: #f5f2f2;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: 220px;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: black;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+            color: black;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        h1 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        
+        p {
+            font-size: 20px;
+            font-family: 'Josefin Sans', sans-serif;
+            line-height: 28px;
+            letter-spacing: 0.5px;
+        }
+        
+        .copy {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        
+        .no-books {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .search-form {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .search-form input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .search-form button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #008498;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="search-form" method="get" action="{% url 'listclient' %}">
+            <input type="text" name="q" placeholder="Rechercher un livre..." value="{{ query }}">
+            <button type="submit">Rechercher</button>
+        </form>
+        {% if query %}
+        <div class="title">Résultats de recherche pour '{{ query }}'</div>
+        {% else %}
+        <div class="title">Tous les livres</div>
+        {% endif %}
+        <section class="container">
+            {% if livres %} {% for livre in livres %}
+            <a href="{% url 'ktab' livre.Id_livre %}" class="card full">
+                <div class="content">
+                    <img src="{{ livre.Image.url }}" alt="{{ livre.Name_book }}" class="image">
+                    <h1>{{ livre.Name_book }}</h1>
+                    <p class="copy">Librairie: {{ livre.Id_lib.name_lib }}</p>
+                    <p class="copy">Prix: {{ livre.Prix }} MRU</p>
+                </div>
+            </a>
+            {% endfor %} {% else %}
+            <p class="no-books">Pas de livres disponibles.</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+
+</html>
+{% endblock %}

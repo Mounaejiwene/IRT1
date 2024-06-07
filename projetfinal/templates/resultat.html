@@ -1,0 +1,94 @@
+{% extends 'Base.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de la recherche</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: #f5f2f2;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: 220px;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: black;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+            color: black;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        h1 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        
+        p {
+            font-size: 20px;
+            font-family: 'Josefin Sans', sans-serif;
+            line-height: 28px;
+            letter-spacing: 0.5px;
+        }
+        
+        .copy {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Résultats de la recherche pour "{{ query }}"</h1>
+
+    <section class="container">
+        {% if livres %} {% for livre in livres %}
+        <a href="{% url 'ktab' livre.Name_book %}" class="card full">
+            <div class="content">
+                <img src="{{ livre.Image.url }}" alt="{{ livre.Name_book }}" class="image">
+                <h2>{{ livre.Name_book }}</h2>
+                <p class="copy">Librairie: {{ livre.Id_lib.Name_lib }}</p>
+                <p class="copy">Prix: {{ livre.Prix }} MRU</p>
+            </div>
+        </a>
+        {% endfor %} {% else %}
+        <p>Aucun résultat trouvé pour "{{ query }}".</p>
+        {% endif %}
+    </section>
+</body>
+
+</html>
+{% endblock %}

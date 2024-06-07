@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un livre</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .custom-form {
+            width: 100%;
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        
+        .col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            transition: transform 0.3s;
+        }
+        
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        
+        input[type="file"] {
+            padding: 3px;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #007bff;
+            transform: scale(1.02);
+        }
+        
+        button {
+            width: 100%;
+            background-color: #008498;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        
+        button:hover {
+            transform: scale(1.02);
+        }
+        
+        button:active {
+            background-color: #008498;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: #6c757d;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+            transition: transform 0.3s;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        
+        .btn-secondary:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn-secondary:active {
+            background-color: #5a6268;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #008498;
+            font-size: 18px;
+            margin-bottom: 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .back-button:hover {
+            color: #005f73;
+            transform: scale(1.05);
+        }
+        
+        .back-button svg {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="javascript:history.back()" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg> Retour
+        </a>
+<div>
+
+            <button type="button"> <a href="/importBook/{{who}}">Importez des livres</a></button>
+        </div>
+        <form method="post" enctype="multipart/form-data" class="custom-form">
+            {% csrf_token %}
+            <h2>Ajouter un livre</h2>
+            {% for field in form %}
+            <div class="row">
+                <div class="col">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label> {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Ajouter le livre</button>
+        </form>
+    </div>
+</body>
+
+</html>

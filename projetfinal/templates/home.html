@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M E K T E B E T Y</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #008498;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+        
+        .navbar .brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar .nav-links a,
+        .navbar .nav-links button {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .navbar .nav-links a:hover,
+        .navbar .nav-links button:hover {
+            background-color: #008498;
+            border-radius: 4px;
+        }
+        
+        .navbar .nav-links input[type="text"] {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        td img {
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .book-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-warning {
+            background-color: #008498;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        
+        .btn:hover {
+            background-color: #218838;
+        }
+        
+        .btn-warning:hover {
+            background-color: #008498;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="brand">M E K T E B E T Y</div>
+        <div class="nav-links">
+            <a href="{% url 'logout' %}">Se déconnecter</a>
+            <a href="{% url 'ajouter_un_livre' %}">Ajouter un livre</a>
+            <form action="{% url 'home' %}" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Rechercher..." class="search-input" value="{{ request.GET.q }}">
+                <button type="submit" class="search-button">Rechercher</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <button type="button"><a href="/exportBook/{{idlib}}">Exporter les livres</a></button>
+
+    </div>
+    <div class="container">
+        <h2>{% if query %}Résultats de la recherche pour "{{ query }}"{% else %}Vos livres{% endif %}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Genre</th>
+                    <th>Prix</th>
+                    <th>stock</th>
+
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livre in livres %}
+                <tr>
+                    <td><img src="{{ livre.Image.url }}" alt="{{ livre.Name_book }}"></td>
+                    <td>{{ livre.Name_book }}</td>
+                    <td>{{ livre.Authour_name }}</td>
+                    <td>{{ livre.Genre }}</td>
+                    <td>{{ livre.Prix }}</td>
+                    <td>{{ livre.Stock}}</td>
+
+                    <td>
+                        <a href="{% url 'modifier_livre' livre.Id_livre %}" class="btn btn-warning">Modifier</a>
+                        <form action="{% url 'supprimer_livre' livre.Id_livre %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">{% if query %}Aucun résultat trouvé pour "{{ query }}".{% else %}Aucun livre trouvé pour cette bibliothèque.{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+</html>

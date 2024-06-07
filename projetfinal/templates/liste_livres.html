@@ -1,0 +1,28 @@
+<!-- templates/liste_livres.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Liste des livres</title>
+    <link rel="stylesheet" href="{% static 'css/liste_livres.css' %}">
+</head>
+
+<body>
+    <h2>Liste des livres</h2>
+    <div class="livres">
+        {% for livre in livres %}
+        <div class="livre">
+            <img src="{{ livre.Image.url }}" alt="{{ livre.Name_book }}" class="livre-image">
+            <h3>{{ livre.Name_book }}</h3>
+            <p>Auteur: {{ livre.Authour_name }}</p>
+            <p>Librairie: {{ livre.Id_lib.name_lib }}</p>
+            <p>Genre: {{ livre.Genre }}</p>
+            <p>Prix: {{ livre.Prix }}</p>
+
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
